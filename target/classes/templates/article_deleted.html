@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Article Management System</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2">
+  <h1>Article List Deleted</h1>
+  <!--ប្រើ showNewArticleForm ជា Map របស់ Function Insert-->
+
+  <table border="1" class="table table-striped table-responsive-md">
+    <thead>
+    <tr>
+      <th>Article ID</th>
+      <th>Title - Author name</th>
+      <th>Article title</th>
+      <th>Article Description</th>
+      <th> Author Name </th>
+      <th> Author Profile </th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--  article ជា Object ដែលទទួលតម្លៃពី listArticle  -->
+    <tr th:each="article : ${listArticle.getData()} ">
+      <!--   យក Object ឈ្មោះ article ទៅចុចដើម្បីចាប់យក ធាតុនីមួយៗ មកពី Entity ក្នុង Article -->
+      <form th:if="${article.getStatus() == 0}">
+        <td th:text="${article.getId()}"></td>
+        <td th:text="${article.getFullName()}" style="text-align: center"></td>
+        <td th:text="${article.getArticleTitle()}"></td>
+        <td th:text="${article.getDescription}"></td>
+        <td th:text="${article.getAuthorName()}"></td>
+        <td align="center">
+          <img th:src="'http://localhost:8080/viewImageById/'+${article.getDbFile().getId()}" alt="No Image" style="height: 70px">
+        </td>
+        <!--     @{/showFormForUpdate/{id} ដាកតាម Map ដែលមានក្នុង Controller-->
+      </form>
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/}" class="btn btn-success btn-sm mb-3">Article Article</a>
+</div>
+</body>
+</html>

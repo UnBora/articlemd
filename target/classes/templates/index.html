@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Article Management System</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        th,td, .title{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body style="background-color: rgba(250,235,215,0.78)">
+<div class="container my-2">
+  <h1 class="title">Article List</h1>
+<!--ប្រើ showNewArticleForm ជា Map របស់ Function Insert-->
+  <a th:href="@{/showNewArticleForm}" class="btn btn-primary btn-sm mb-3"> Add Article </a>
+    <a th:href="@{/disableArticlesPage/1}" class="btn btn-warning btn-sm mb-3"> Article Dis activate</a>
+<!--    <a th:href="@{/articleDeleted}" class="btn btn-danger btn-sm mb-3"> Article Deleted</a>-->
+  <table border="1" class="table table-striped table-responsive-md">
+    <thead>
+    <tr>
+      <th>Article ID</th>
+      <th>Article title</th>
+      <th>Article Description</th>
+      <th>Author Name </th>
+      <th>Author Profile </th>
+      <th>Actions </th>
+    </tr>
+    </thead>
+    <tbody>
+<!--  article ជា Object ដែលទទួលតម្លៃពី listArticle  -->
+    <tr th:each="article : ${listArticle.getData()} " >
+<!--   យក Object ឈ្មោះ article ទៅចុចដើម្បីចាប់យក ធាតុនីមួយៗ មកពី Entity ក្នុង Article -->
+        <form th:if="${article.getStatus() == 2}">
+            <td th:text="${article.id}"></td>
+            <td th:text="${article.getArticleTitle()}"></td>
+            <td th:text="${article.getDescription}"></td>
+            <td th:text="${article.getAuthorName()}"></td>
+            <td align="center">
+                <img th:src="'http://localhost:8080/viewImageById/'+${article.getDbFile().getId()}" alt="No Image" style="height: 70px">
+            </td>
+            <!--     @{/showFormForUpdate/{id} ដាកតាម Map ដែលមានក្នុង Controller-->
+            <td style="align-items: center; align-content: center; padding-top: 30px">
+                <a th:href="@{/showFormForUpdate/{id}(id=${article.id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/disableArticle/{id}(id=${article.id})}" class="btn btn-warning">Disable</a>
+                <a th:href="@{/deleteArticle/{id}(id=${article.id})}" class="btn btn-danger">Delete</a>
+<!--                <a th:href="@{'http://localhost:8080/downloadFile/'+${article.getDbFile().getId()}}" class="btn btn-danger">Download</a>-->
+<!--                <a th:href="@{'http://localhost:8080/viewImageById/'+${article.getDbFile().getId()}}" class="btn btn-danger">View</a>-->
+            </td>
+        </form>
+    </tr>
+    </tbody>
+  </table>
+    <div th:if = "${totalPages > 1}">
+        <div class = "row col-sm-10">
+            <div class = "col-sm-2">
+                Total Rows: <span th:text="${totalItems}" style="text-underline-color: #128ff2; color: blue"></span>
+            </div>
+            <div class = "col-sm-4">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/' + ${i}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+            </div>
+            <div class = "col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/' + ${currentPage + 1}}">Next</a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/' + ${totalPages}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

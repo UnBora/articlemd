@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.util.StringUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -119,7 +120,9 @@ public class ArticleServiceIpm implements BaseService<Article, Integer, ArticleR
             articleResponse.setData(null);
         } else {
             String fileId = article.getDbFile().getId();
-            dbFileStorageService.updateFile(fileId, file);
+            if (!file.getOriginalFilename().isEmpty()){
+                dbFileStorageService.updateFile(fileId, file);
+            }
             article.setStatus(2);
             articleRepository.save(article);
             articleResponse.setData(article);

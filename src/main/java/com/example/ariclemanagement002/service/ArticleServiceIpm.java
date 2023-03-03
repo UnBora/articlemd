@@ -9,10 +9,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.thymeleaf.util.StringUtils;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -52,6 +52,10 @@ public class ArticleServiceIpm implements BaseService<Article, Integer, ArticleR
            articleResponse.setData(null);
        }
         return articleResponse;
+    }
+
+    public Article getById1(Integer integer) {
+        return articleRepository.findById(integer).orElse(null);
     }
 
     @Override
@@ -119,10 +123,14 @@ public class ArticleServiceIpm implements BaseService<Article, Integer, ArticleR
             articleResponse.setMessage("The Article ID: " + integer + " Had Deleted!");
             articleResponse.setData(null);
         } else {
-            String fileId = article.getDbFile().getId();
-            if (!file.getOriginalFilename().isEmpty()){
-                dbFileStorageService.updateFile(fileId, file);
-            }
+            if (!Objects.requireNonNull(file.getOriginalFilename()).isEmpty())
+                dbFileStorageService.updateFile(article.getDbFile().getId(), file);
+            if (obj.getArticleTitle() != null)
+                article.setArticleTitle(obj.getArticleTitle());
+            if (obj.getAuthorName() != null)
+                article.setAuthorName(obj.getAuthorName());
+            if (obj.getDescription() != null)
+                article.setDescription(obj.getDescription());
             article.setStatus(2);
             articleRepository.save(article);
             articleResponse.setData(article);

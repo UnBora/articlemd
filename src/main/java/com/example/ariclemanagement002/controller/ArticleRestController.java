@@ -1,5 +1,7 @@
 package com.example.ariclemanagement002.controller;
 
+import com.example.ariclemanagement002.exception.ApiResponseException;
+import com.example.ariclemanagement002.exception.RestExceptionHandler;
 import com.example.ariclemanagement002.model.Article;
 import com.example.ariclemanagement002.model.DBFile;
 import com.example.ariclemanagement002.exception.AppConstants;
@@ -17,7 +19,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/v1")
-public class ArticleRestController {
+public class ArticleRestController extends RestExceptionHandler {
     private final ArticleServiceIpm articleServiceIpm;
     private final DBFileStorageService dbFileStorageService;
 
@@ -37,8 +39,12 @@ public class ArticleRestController {
 
     @GetMapping("/article/{id}")
     public ArticleResponse getArticleById(@PathVariable(value = "id") int articleId) {
-
         return  articleServiceIpm.getById(articleId);
+    }
+
+    @GetMapping("/article1/{id}")
+    public ArticleResponse getArticleById1(@PathVariable(value = "id") int articleId) {
+        throw new ApiResponseException(articleServiceIpm.getById1(articleId));
     }
 
     @PostMapping(value = "/add")
@@ -59,7 +65,7 @@ public class ArticleRestController {
     }
     @DeleteMapping("deleteArticle/{id}")
     public ArticleResponse deleteArticleById(@PathVariable("id") int articleId) {
-        return articleServiceIpm.deleteById(articleId, articleServiceIpm.getById(articleId).getData());
+        throw new ApiResponseException(articleServiceIpm.deleteById(articleId, articleServiceIpm.getById(articleId).getData()));
     }
 
     @PostMapping("disable/{id}")

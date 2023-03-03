@@ -1,5 +1,6 @@
 package com.example.ariclemanagement002.exception;
 
+import com.example.ariclemanagement002.model.Article;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class ApiResponseException extends RuntimeException {
-    private Object data;
+    private Article data;
 
 
 }

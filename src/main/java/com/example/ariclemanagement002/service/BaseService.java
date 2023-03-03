@@ -5,8 +5,8 @@ public interface BaseService<T, ID, RES>{
 
     void save(T obj);
     RES getById(ID id);
-    RES deleteById(ID id, T obj);
-    RES disableById(ID id, T obj);
+    T deleteById(ID id, T obj);
+    T disableById(ID id, T obj);
     RES enableById(ID id, T obj);
 
 }

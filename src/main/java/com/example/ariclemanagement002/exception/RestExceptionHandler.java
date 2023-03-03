@@ -28,8 +28,12 @@ public class RestExceptionHandler {
     @ExceptionHandler({ApiResponseException.class})
     public ResponseEntity<ArticleResponse> handleApiException(ApiResponseException ex) {
         if (ObjectUtils.isEmpty(ex.getData())) {
-            return new ResponseEntity<>(new ArticleResponse(404, "Not found", null), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ArticleResponse(HttpStatus.NOT_FOUND.value(), "Not found", null), HttpStatus.NOT_FOUND);
+        } else if (ex.getData().getStatus()==0) {
+            return new ResponseEntity<>(new ArticleResponse(HttpStatus.NOT_FOUND.value(), "The record Deleted", null), HttpStatus.NOT_FOUND);
+        } else if (ex.getData().getStatus()==1) {
+            return new ResponseEntity<>(new ArticleResponse(HttpStatus.CONTINUE.value(), "The record Dis Activate", null), HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(new ArticleResponse(200, "found", (Article) ex.getData()), HttpStatus.OK);
+        return new ResponseEntity<>(new ArticleResponse(200, "found",  ex.getData()), HttpStatus.OK);
     }
 }

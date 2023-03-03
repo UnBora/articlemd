@@ -70,7 +70,7 @@ public class ArticleRestController extends RestExceptionHandler {
 
     @PostMapping("disable/{id}")
     public ArticleResponse disableArticleById(@PathVariable("id") int articleId) {
-        return articleServiceIpm.disableById(articleId, articleServiceIpm.getById(articleId).getData());
+        throw new ApiResponseException(articleServiceIpm.disableById(articleId, articleServiceIpm.getById(articleId).getData()));
     }
 
     @PostMapping("enable/{id}")

@@ -59,18 +59,11 @@ public class ArticleServiceIpm implements BaseService<Article, Integer, ArticleR
     }
 
     @Override
-    public ArticleResponse deleteById(Integer integer, Article obj) {
+    public Article deleteById(Integer integer, Article obj) {
         Article article = articleRepository.findById(integer).orElse(null);
-        ArticleResponse articleResponse = new ArticleResponse(200, "The Article ID:: " + integer + " Deleted!", article);
-        if (article != null) {
-            article.setStatus(0);
-            articleRepository.save(article);
-            articleResponse.setData(article);
-        } else {
-            articleResponse.setResponse_code(404);
-            articleResponse.setMessage("The Article ID: " + integer + " Not Found!");
-        }
-        return articleResponse;
+        article.setStatus(0);
+        articleRepository.save(article);
+        return article;
     }
 
     @Override
@@ -93,22 +86,11 @@ public class ArticleServiceIpm implements BaseService<Article, Integer, ArticleR
     }
 
     @Override
-    public ArticleResponse disableById(Integer integer, Article obj) {
+    public Article disableById(Integer integer, Article obj) {
         Article article = articleRepository.findById(integer).orElse(null);
-        ArticleResponse articleResponse = new ArticleResponse(200, "Data Found!", article);
-        if (article == null) {
-            articleResponse.setResponse_code(404);
-            articleResponse.setMessage("The Article ID: " + integer + " Not Found!");
-        } else if (article.getStatus() == 0) {
-            articleResponse.setResponse_code(404);
-            articleResponse.setMessage("The Article ID: " + integer + " Had Deleted!");
-            articleResponse.setData(null);
-        } else {
             article.setStatus(1);
             articleRepository.save(article);
-            articleResponse.setData(article);
-        }
-        return articleResponse;
+        return article;
     }
 
     public ArticleResponse update(int integer, Article obj, MultipartFile file) throws IOException {

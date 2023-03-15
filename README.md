@@ -22,6 +22,7 @@ git push -uf origin main
 
 ## API Articles Management
 
+
 #### Post Article
 
 ```http:localhost:8080
@@ -29,11 +30,9 @@ git push -uf origin main
 ```
 
 | Parameter     | Type     | Description                |
-| :--------     | :------- | :------------------------  |
-| `articleTitle`| `string` | ចំណងជើង​ Article          |
-| `description` | `string` | បរិយាពីប្រធានបទ            |
-| `authorName`  |`string`  | ឈ្មោះអ្នកនិពន្ធ               |
-| `file`        | `file`   | រូបភាបដែលត្រូវ​ Upload        |
+| :--------     | :------- | :------------------------                           |
+| `article     `| `string` | ចំណងជើង, បរិយាពីប្រធានបទ, ឈ្មោះអ្នកនិពន្ធ របស់  Article (ប្រភេទជា  RequestParam) Example=    *{ "articleTitle": "Timmy002", "description": "Don't tell me how to lead my life. ", "authorName": "Cow" }*    |
+| `file`        | `MultipartFile`   | រូបភាបដែលត្រូវ Upload        |
 
 #### Get all Articles
 
@@ -41,11 +40,13 @@ git push -uf origin main
   Get /api/v1/articles
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-|           |          | **Required**. no |
+| Parameter | Type     | Description                                                                                      |
+| :-------- | :------- | :-------------------------                                                                       |
+| `pageNo`  | `int`    | **Default**. 1  (page ទី1)                                                                        |
+| `pageSize`| `int`    | **Default**  5  (1 page មាន article 5)                                                           |
+| `status`  | `int`    | **Default**. 2 (0= article ត្រូវបានលុបហើយ, 1 = article ត្រូវបាន  disable, 2= article កំពុង  active )|
 
-#### Get item
+#### Get Article
 
 ```http:localhost:8080
   GET /api/v1/article/{id}
@@ -53,8 +54,19 @@ git push -uf origin main
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
+| `id`      | `int`    | **Required**. ត្រូវការ id ដើម្បីទៅចាប់យក​ Article យកមក​ |
 
+#### Update Article
+
+```http:localhost:8080
+  Post /api/v1/updateArticle/{id}
+```
+
+| Parameter     | Type     | Description                | 
+| :--------     | :------- | :------------------------- |
+| `id`          | `int`    | id របស់ user (ប្រភេទជា PathVariable)      |
+| `article     `| `string` | ចំណងជើង, បរិយាពីប្រធានបទ, ឈ្មោះអ្នកនិពន្ធ របស់  Article (ប្រភេទជា RequestParam) Example=    *{ "articleTitle": "Timmy002", "description": "Don't tell me how to lead my life. ", "authorName": "Cow" }*    |
+| `file`        | `MultipartFile`   | រូបភាបដែលត្រូវ Upload (RequestParam) |
 
 ## Integrate with your tools
 

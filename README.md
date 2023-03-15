@@ -7,8 +7,6 @@ Articles Management បង្កើតឡើងដើម្បី Practice ក�
 
 - Create Article
 - Get All Articles
-![Capture](https://user-images.githubusercontent.com/74696117/225249307-70ec2fd9-fdc1-4318-9029-8d7e29b87ed1.PNG)
-
 - Get Article By ID
 - Update Article By ID
 - Delete Article By ID

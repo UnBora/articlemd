@@ -25,8 +25,9 @@ Articles Management បង្កើតឡើងដើម្បី Practice ក�
 
 | Parameter     | Type     | Description                |
 | :--------     | :------- | :------------------------                           |
-| `article     `| `string` | ចំណងជើង, បរិយាពីប្រធានបទ, ឈ្មោះអ្នកនិពន្ធ របស់  Article (ប្រភេទជា  RequestParam) Example=    *{ "**articleTitle**": "រឿងផ្កាស្រពោន", "**description**": "រឿងផ្កាស្រពោន គឺជាប្រលោមលោកដ៏ប្រជាប្រិយមួយនៅប្រទេសកម្ពុជា ហើយរឿងនេះក៏ត្រូវបានថតជាខ្សែភាពយន្តផងដែរ។ ប្រលោមលោកដ៏ប្រជាប្រិយនេះ គឺជាស្នាដៃដ៏ឆ្នើមរបស់កវីនិពន្ធ រដ្ឋា ចាន់ថន ដែលបាននិពន្ធឡើងនៅព.ស.២៤៩០ ត្រូវនឹងគ.ស.១៩៣៨", "**authorName**": "រដ្ឋា ចាន់ថន" }*    |
-| `file`        | `MultipartFile`   | រូបភាបដែលត្រូវ Upload        |
+| `article     `| `string` |  ![Capture](https://user-images.githubusercontent.com/74696117/225246554-b81bd9f3-0c45-45c7-802e-ebff8ba51fb3.PNG)   |
+| `file`        | `MultipartFile` 
+  | រូបភាបដែលត្រូវ Upload        |
 
 #### Get all Articles
 

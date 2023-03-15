@@ -1,6 +1,6 @@
-# ArticleMd
+# Article management
 
-
+The Articles Management បង្កើតឡើងដើម្បី​ Practice ក្នុងការចាប់ផ្ដើមរៀននិងស្វែងយល់ពី Spring data jpa។
 
 ## Getting started
 
@@ -19,6 +19,22 @@ git remote add origin https://gitlab.com/UnBora/articlemd.git
 git branch -M main
 git push -uf origin main
 ```
+
+## API Articles Management
+
+#### Post Article
+
+```http:localhost:8080
+  Post /api/v1/add
+```
+
+| Parameter     | Type     | Description                |
+| :--------     | :------- | :------------------------  |
+| `articleTitle`| `string` | ចំណងជើង​ Article          |
+| `description` | `string` | បរិយាពីប្រធានបទ            |
+| `authorName`  |`string`  | ឈ្មោះអ្នកនិពន្ធ               |
+| `file`        | `file`   | រូបភាបដែលត្រូវ​ Upload        |
+
 
 ## Integrate with your tools
 

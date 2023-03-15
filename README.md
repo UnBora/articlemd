@@ -26,8 +26,7 @@ Articles Management បង្កើតឡើងដើម្បី Practice ក�
 | Parameter     | Type     | Description                |
 | :--------     | :------- | :------------------------                           |
 | `article     `| `string` |  ![Capture](https://user-images.githubusercontent.com/74696117/225246554-b81bd9f3-0c45-45c7-802e-ebff8ba51fb3.PNG)   |
-| `file`        | `MultipartFile` 
-  | រូបភាបដែលត្រូវ Upload        |
+| `file`        | `MultipartFile` | រូបភាបដែលត្រូវ Upload        |
 
 #### Get all Articles
 
@@ -60,7 +59,7 @@ Articles Management បង្កើតឡើងដើម្បី Practice ក�
 | Parameter     | Type     | Description                | 
 | :--------     | :------- | :------------------------- |
 | `id`          | `int`    | id របស់ user (ប្រភេទជា PathVariable)      |
-| `article     `| `string` | ចំណងជើង, បរិយាពីប្រធានបទ, ឈ្មោះអ្នកនិពន្ធ របស់  Article (ប្រភេទជា RequestParam) Example=    *{ "**articleTitle**": "រឿងកុលាបប៉ៃលិន", "**description**": "រឿងកុលាបប៉ៃលិន ជាស្នាដៃនិពន្ធរបស់លោកញ៉ុក ថែម ដែលបាននិពន្ធកាលពីព.ស.២៥០៤ ត្រូវនឹង គ.ស.១៩៣៦ឬឆ្នាំ១៩៤៣ ", "**authorName**": "ញ៉ុក ថែម" }*    |
+| `article     `| `string` | ![Capture](https://user-images.githubusercontent.com/74696117/225246554-b81bd9f3-0c45-45c7-802e-ebff8ba51fb3.PNG)    |
 | `file`        | `MultipartFile`   | រូបភាបដែលត្រូវ Upload (RequestParam) |
 
 

@@ -84,7 +84,7 @@ git push -uf origin main
 #### Disable Article
 
 ```http:localhost:8080
-  Disable /api/v1/disable/{id}
+  Post /api/v1/disable/{id}
 ```
 
 | Parameter | Type     | Description                                                          |
@@ -95,7 +95,7 @@ git push -uf origin main
 #### Enable Article
 
 ```http:localhost:8080
-  Enable /api/v1/enable/{id}
+  Post /api/v1/enable/{id}
 ```
 
 | Parameter | Type     | Description                                                        |

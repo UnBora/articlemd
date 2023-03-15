@@ -68,6 +68,40 @@ git push -uf origin main
 | `article     `| `string` | ចំណងជើង, បរិយាពីប្រធានបទ, ឈ្មោះអ្នកនិពន្ធ របស់  Article (ប្រភេទជា RequestParam) Example=    *{ "**articleTitle**": "រឿងកុលាបប៉ៃលិន", "**description**": "រឿងកុលាបប៉ៃលិន ជាស្នាដៃនិពន្ធរបស់លោកញ៉ុក ថែម ដែលបាននិពន្ធកាលពីព.ស.២៥០៤ ត្រូវនឹង គ.ស.១៩៣៦ឬឆ្នាំ១៩៤៣ ", "**authorName**": "ញ៉ុក ថែម" }*    |
 | `file`        | `MultipartFile`   | រូបភាបដែលត្រូវ Upload (RequestParam) |
 
+
+#### Delete Article
+
+```http:localhost:8080
+  Delete /api/v1/deleteArticle/{id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `int`    | **Required**. ត្រូវការ id ដើម្បីទៅ Delete​ Article (Change statuse to 0​ |
+
+
+
+#### Disable Article
+
+```http:localhost:8080
+  Disable /api/v1/disable/{id}
+```
+
+| Parameter | Type     | Description                                                          |
+| :-------- | :------- | :--------------------------------                                    |
+| `id`      | `int`    | **Required**. ត្រូវការ id ដើម្បីទៅ Disable Article (Change statuse to 1  |
+
+
+#### Enable Article
+
+```http:localhost:8080
+  Enable /api/v1/enable/{id}
+```
+
+| Parameter | Type     | Description                                                        |
+| :-------- | :------- | :--------------------------------                                  |
+| `id`      | `int`    | **Required**. ត្រូវការ id ដើម្បីទៅ Enable Article (Change statuse to 2 |
+
 ## Integrate with your tools
 
 - [ ] [Set up project integrations](https://gitlab.com/UnBora/articlemd/-/settings/integrations)

@@ -99,5 +99,5 @@ Articles Management បង្កើតឡើងដើម្បី Practice ក�
 ...
 
 ## 🚀 About Me
-សួស្ដី! ខ្ញុំ បូរ៉ា The one who create this project for you!
-
+សួស្ដី! ខ្ញុំ បូរ៉ា ចូលចិត្តអានសៀវភៅកូនក្មេង
+![Timmy2](https://user-images.githubusercontent.com/74696117/225252531-d72f8712-2b91-4a49-8b72-613d446d7912.png)

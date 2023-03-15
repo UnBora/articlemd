@@ -1,6 +1,7 @@
 # Article management
 
 Articles Management បង្កើតឡើងដើម្បី Practice ក្នុងការចាប់ផ្ដើមរៀននិងស្វែងយល់ពី Spring data jpa។ ក្នង Project មួយនេះយើងក៏អាចដឹងពីការ Upload and Download File ផងដែរ។
+![Capture](https://user-images.githubusercontent.com/74696117/225243156-be2fc6a2-d9e8-4657-a835-dcc2d3196264.PNG)
 
 ## Project Features
 

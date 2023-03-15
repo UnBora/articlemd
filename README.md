@@ -35,6 +35,26 @@ git push -uf origin main
 | `authorName`  |`string`  | ឈ្មោះអ្នកនិពន្ធ               |
 | `file`        | `file`   | រូបភាបដែលត្រូវ​ Upload        |
 
+#### Get all Articles
+
+```http:localhost:8080
+  Get /api/v1/articles
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+|           |          | **Required**. no |
+
+#### Get item
+
+```http:localhost:8080
+  GET /api/v1/article/{id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
 
 ## Integrate with your tools
 

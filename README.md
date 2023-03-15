@@ -25,7 +25,7 @@ Articles Management បង្កើតឡើងដើម្បី Practice ក�
 
 | Parameter     | Type     | Description                |
 | :--------     | :------- | :------------------------                           |
-| `article     `| `string` |  ![Capture](https://user-images.githubusercontent.com/74696117/225246554-b81bd9f3-0c45-45c7-802e-ebff8ba51fb3.PNG)   |
+| `article     `| `string` |  ![Capture](https://user-images.githubusercontent.com/74696117/225247351-01854eb7-3887-4606-9833-0500b8282cb5.PNG)   |
 | `file`        | `MultipartFile` | រូបភាបដែលត្រូវ Upload        |
 
 #### Get all Articles
@@ -59,7 +59,7 @@ Articles Management បង្កើតឡើងដើម្បី Practice ក�
 | Parameter     | Type     | Description                | 
 | :--------     | :------- | :------------------------- |
 | `id`          | `int`    | id របស់ user (ប្រភេទជា PathVariable)      |
-| `article     `| `string` | ![Capture](https://user-images.githubusercontent.com/74696117/225246554-b81bd9f3-0c45-45c7-802e-ebff8ba51fb3.PNG)    |
+| `article     `| `string` | ![Capture](https://user-images.githubusercontent.com/74696117/225247351-01854eb7-3887-4606-9833-0500b8282cb5.PNG)    |
 | `file`        | `MultipartFile`   | រូបភាបដែលត្រូវ Upload (RequestParam) |
 
 
@@ -71,7 +71,7 @@ Articles Management បង្កើតឡើងដើម្បី Practice ក�
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `int`    | **Required**. ត្រូវការ id ដើម្បីទៅ Delete​ Article (Change statuse to 0​ |
+| `id`      | `int`    | **Required**. ត្រូវការ id ដើម្បីទៅ Delete​ Article (Change statuse to 0) |
 
 
 
@@ -83,7 +83,7 @@ Articles Management បង្កើតឡើងដើម្បី Practice ក�
 
 | Parameter | Type     | Description                                                          |
 | :-------- | :------- | :--------------------------------                                    |
-| `id`      | `int`    | **Required**. ត្រូវការ id ដើម្បីទៅ Disable Article (Change statuse to 1  |
+| `id`      | `int`    | **Required**. ត្រូវការ id ដើម្បីទៅ Disable Article (Change statuse to 1)  |
 
 
 #### Enable Article
@@ -94,7 +94,7 @@ Articles Management បង្កើតឡើងដើម្បី Practice ក�
 
 | Parameter | Type     | Description                                                        |
 | :-------- | :------- | :--------------------------------                                  |
-| `id`      | `int`    | **Required**. ត្រូវការ id ដើម្បីទៅ Enable Article (Change statuse to 2 |
+| `id`      | `int`    | **Required**. ត្រូវការ id ដើម្បីទៅ Enable Article (Change statuse to 2) |
 
 ...
 

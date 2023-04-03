@@ -71,14 +71,14 @@ public class ArticleController {
 
     @GetMapping("/showFormForUpdate/{id}")
     public Object showFormUpdate(@PathVariable(value = "id") int id, Model model) {
-        Article article = articleServiceIpm.getById(id).getData();
+        Article article = articleServiceIpm.getById(id);
         model.addAttribute("article", article);
         return "update_article";
     }
 
     @PostMapping("/updateArticle")
     public String updateArticle(@ModelAttribute Article article) {
-        Article obj = articleServiceIpm.getById(article.getId()).getData();
+        Article obj = articleServiceIpm.getById(article.getId());
         String imageId = obj.getDbFile().getId();
         article.setDbFile(obj.getDbFile());
         if (article.getMultipartFile() != null && !StringUtils.isEmpty(article.getMultipartFile().getOriginalFilename())) {
@@ -103,21 +103,21 @@ public class ArticleController {
 
     @GetMapping("/deleteArticle/{id}")
     public String deleteArticle(@PathVariable(value = "id") int id) {
-        Article article = articleServiceIpm.getById(id).getData();
+        Article article = articleServiceIpm.getById(id);
         this.articleServiceIpm.deleteById(id, article);
         return "redirect:/1";
     }
 
     @GetMapping("/EnableArticle/{id}")
     public String enableArticle(@PathVariable(value = "id") int id) {
-        Article article = articleServiceIpm.getById(id).getData();
+        Article article = articleServiceIpm.getById(id);
         this.articleServiceIpm.enableById(id, article);
         return "redirect:/disableArticlesPage/1";
     }
 
     @GetMapping("/disableArticle/{id}")
     public String disableAccById(@PathVariable(value = "id") int id) {
-        Article article = articleServiceIpm.getById(id).getData();
+        Article article = articleServiceIpm.getById(id);
         this.articleServiceIpm.disableById(id, article);
         return "redirect:/1";
     }

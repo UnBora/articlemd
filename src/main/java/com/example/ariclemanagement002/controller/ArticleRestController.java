@@ -39,7 +39,7 @@ public class ArticleRestController extends RestExceptionHandler {
 
     @GetMapping("/article/{id}")
     public ArticleResponse getArticleById(@PathVariable(value = "id") int articleId) {
-        return  articleServiceIpm.getById(articleId);
+        throw new ApiResponseException(articleServiceIpm.getById(articleId));
     }
 
     @GetMapping("/article1/{id}")
@@ -65,16 +65,16 @@ public class ArticleRestController extends RestExceptionHandler {
     }
     @DeleteMapping("deleteArticle/{id}")
     public ArticleResponse deleteArticleById(@PathVariable("id") int articleId) {
-        throw new ApiResponseException(articleServiceIpm.deleteById(articleId, articleServiceIpm.getById(articleId).getData()));
+        throw new ApiResponseException(articleServiceIpm.deleteById(articleId, articleServiceIpm.getById(articleId)));
     }
 
     @PostMapping("disable/{id}")
     public ArticleResponse disableArticleById(@PathVariable("id") int articleId) {
-        throw new ApiResponseException(articleServiceIpm.disableById(articleId, articleServiceIpm.getById(articleId).getData()));
+        throw new ApiResponseException(articleServiceIpm.disableById(articleId, articleServiceIpm.getById(articleId)));
     }
 
     @PostMapping("enable/{id}")
     public ArticleResponse enableArticleById(@PathVariable("id") int articleId) {
-        return articleServiceIpm.enableById(articleId, articleServiceIpm.getById(articleId).getData());
+        throw new ApiResponseException(articleServiceIpm.enableById(articleId, articleServiceIpm.getById(articleId)));
     }
 }

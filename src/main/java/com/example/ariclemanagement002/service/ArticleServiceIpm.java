@@ -16,7 +16,7 @@ import java.util.Objects;
 
 
 @Service
-public class ArticleServiceIpm implements BaseService<Article, Integer, ArticleResponse> {
+public class ArticleServiceIpm implements BaseService<Article, Integer> {
 
     private final ArticleRepository articleRepository;
     final
@@ -40,18 +40,18 @@ public class ArticleServiceIpm implements BaseService<Article, Integer, ArticleR
     }
 
     @Override
-    public ArticleResponse getById(Integer integer) {
-        Article article = articleRepository.findById(integer).orElse(null);
-        ArticleResponse articleResponse = new ArticleResponse(200, "The Article ID:: " + integer + " Get Successfully", article);
-       if (article == null){
-           articleResponse.setResponse_code(404);
-           articleResponse.setMessage("The Article ID: "+integer+ " Not Found!");
-       } else if (article.getStatus() == 0) {
-           articleResponse.setResponse_code(404);
-           articleResponse.setMessage("The Article ID: "+integer+ " Had Deleted!");
-           articleResponse.setData(null);
-       }
-        return articleResponse;
+    public Article getById(Integer integer) {
+//        Article article = articleRepository.findById(integer).orElse(null);
+//        ArticleResponse articleResponse = new ArticleResponse(200, "The Article ID:: " + integer + " Get Successfully", article);
+//       if (article == null){
+//           articleResponse.setResponse_code(404);
+//           articleResponse.setMessage("The Article ID: "+integer+ " Not Found!");
+//       } else if (article.getStatus() == 0) {
+//           articleResponse.setResponse_code(404);
+//           articleResponse.setMessage("The Article ID: "+integer+ " Had Deleted!");
+//           articleResponse.setData(null);
+//       }
+        return articleRepository.findById(integer).orElse(null);
     }
 
     public Article getById1(Integer integer) {
@@ -67,29 +67,25 @@ public class ArticleServiceIpm implements BaseService<Article, Integer, ArticleR
     }
 
     @Override
-    public ArticleResponse enableById(Integer integer, Article obj) {
+    public Article enableById(Integer integer, Article obj) {
         Article article = articleRepository.findById(integer).orElse(null);
-        ArticleResponse articleResponse = new ArticleResponse(200, "Data Found!", article);
-        if (article == null) {
-            articleResponse.setResponse_code(404);
-            articleResponse.setMessage("The Article ID: " + integer + " Not Found!");
-        } else if (article.getStatus() == 0) {
-            articleResponse.setResponse_code(404);
-            articleResponse.setMessage("The Article ID:  " + integer + " Had Deleted!");
-            articleResponse.setData(null);
+        if (article == null || article.getStatus() == 0) {
+            article = null;
         } else {
             article.setStatus(2);
             articleRepository.save(article);
-            articleResponse.setData(article);
         }
-        return articleResponse;
+        return article;
     }
-
     @Override
     public Article disableById(Integer integer, Article obj) {
         Article article = articleRepository.findById(integer).orElse(null);
+        if (article == null || article.getStatus() == 0) {
+            article=null;
+        } else {
             article.setStatus(1);
             articleRepository.save(article);
+        }
         return article;
     }
 

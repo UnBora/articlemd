@@ -15,13 +15,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class RestExceptionHandler {
     @ExceptionHandler(Exception.class) // exception handled
     public ResponseEntity<ArticleResponse> handleExceptions() {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
 
         return new ResponseEntity<>(
                 new ArticleResponse(
-                        400,
+                        HttpStatus.BAD_REQUEST.value(),
                         "YOUR REQUEST PARAMS NOT MATCH!",
-                        null), status
+                        null), HttpStatus.BAD_REQUEST
         );
     }
 
@@ -34,6 +33,6 @@ public class RestExceptionHandler {
         } else if (ex.getData().getStatus()==1) {
             return new ResponseEntity<>(new ArticleResponse(HttpStatus.NOT_FOUND.value(), "The record Dis Activated", null),HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(new ArticleResponse(200, "found",  ex.getData()), HttpStatus.OK);
+        return new ResponseEntity<>(new ArticleResponse(HttpStatus.OK.value(), "found",  ex.getData()), HttpStatus.OK);
     }
 }

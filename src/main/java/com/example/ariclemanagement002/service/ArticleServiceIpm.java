@@ -2,7 +2,7 @@ package com.example.ariclemanagement002.service;
 
 import com.example.ariclemanagement002.model.Article;
 import com.example.ariclemanagement002.repository.ArticleRepository;
-import com.example.ariclemanagement002.service.response.ArticleResponse;
+
 import com.example.ariclemanagement002.service.response.GetAllArticleResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -41,16 +41,6 @@ public class ArticleServiceIpm implements BaseService<Article, Integer> {
 
     @Override
     public Article getById(Integer integer) {
-//        Article article = articleRepository.findById(integer).orElse(null);
-//        ArticleResponse articleResponse = new ArticleResponse(200, "The Article ID:: " + integer + " Get Successfully", article);
-//       if (article == null){
-//           articleResponse.setResponse_code(404);
-//           articleResponse.setMessage("The Article ID: "+integer+ " Not Found!");
-//       } else if (article.getStatus() == 0) {
-//           articleResponse.setResponse_code(404);
-//           articleResponse.setMessage("The Article ID: "+integer+ " Had Deleted!");
-//           articleResponse.setData(null);
-//       }
         return articleRepository.findById(integer).orElse(null);
     }
 
@@ -61,8 +51,10 @@ public class ArticleServiceIpm implements BaseService<Article, Integer> {
     @Override
     public Article deleteById(Integer integer, Article obj) {
         Article article = articleRepository.findById(integer).orElse(null);
-        article.setStatus(0);
-        articleRepository.save(article);
+        if (article != null ){
+            article.setStatus(0);
+            articleRepository.save(article);
+        }
         return article;
     }
 
@@ -89,17 +81,11 @@ public class ArticleServiceIpm implements BaseService<Article, Integer> {
         return article;
     }
 
-    public ArticleResponse update(int integer, Article obj, MultipartFile file) throws IOException {
+    public Article update(int integer, Article obj, MultipartFile file) throws IOException {
         Article article = articleRepository.findById(integer).orElse(null);
-        ArticleResponse articleResponse = new ArticleResponse(200, "Data Found!", article);
         System.out.println(obj);
-        if (article == null) {
-            articleResponse.setResponse_code(404);
-            articleResponse.setMessage("The Article ID: " + integer + " Not Found!");
-        } else if (article.getStatus() == 0) {
-            articleResponse.setResponse_code(404);
-            articleResponse.setMessage("The Article ID: " + integer + " Had Deleted!");
-            articleResponse.setData(null);
+        if (article == null || article.getStatus() == 0 || article.getStatus()==1) {
+            article=null;
         } else {
             if (!Objects.requireNonNull(file.getOriginalFilename()).isEmpty())
                 dbFileStorageService.updateFile(article.getDbFile().getId(), file);
@@ -111,8 +97,7 @@ public class ArticleServiceIpm implements BaseService<Article, Integer> {
                 article.setDescription(obj.getDescription());
             article.setStatus(2);
             articleRepository.save(article);
-            articleResponse.setData(article);
         }
-        return articleResponse;
+        return article;
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 
 
 @RestController
@@ -61,7 +62,7 @@ public class ArticleRestController extends RestExceptionHandler {
                                              @RequestParam String articleDetail,
                                              @RequestParam MultipartFile file ) throws IOException {
         Article article1 = new Gson().fromJson(articleDetail, Article.class);
-        return articleServiceIpm.update(articleId, article1, file);
+        throw new ApiResponseException(articleServiceIpm.update(articleId, article1, file));
     }
     @DeleteMapping("deleteArticle/{id}")
     public ArticleResponse deleteArticleById(@PathVariable("id") int articleId) {
